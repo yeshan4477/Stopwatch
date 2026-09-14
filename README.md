@@ -1,10 +1,10 @@
 # Flipbook Style Stopwatch
 
 ## 1. Overview 
-A minimalist stopwatch application built with HTML, CSS, and vanilla JavaScript. Features a dark-themed UI with flip-style numeric box animations and keyboard shortcuts (Space to start/stop, Enter to reset).
+A minimalist stopwatch application built with HTML, CSS, and vanilla JavaScript. Features a light-themed UI with flip-style numeric box animations and keyboard shortcuts (Space to start/stop, Enter to reset).
 
 ## 2. Working Demo
-- **Live Demo URL:** [Insert your deployed link here, e.g., GitHub Pages URL or video link]
+- **Live Demo URL:**
 
 ## 3. Hackatime & Tracked Hours
 - **Total Hours Tracked:** 2 hours
@@ -17,4 +17,4 @@ A minimalist stopwatch application built with HTML, CSS, and vanilla JavaScript.
   - *Phase 3:* Polished the UI animations (`flip` class) and verified the functionality.
   
 ## 5. AI Usage Notes
-- **AI Collaboration:** Used AI as a coding assistant to help review layout styles, organize JavaScript timer functions, and troubleshoot Git repository setup.
+- **AI Collaboration:** Used AI as a coding assistant to help review layout styles, help in debugging and color and font suggestions, and syntax for the functionality of the logical part of the code.
