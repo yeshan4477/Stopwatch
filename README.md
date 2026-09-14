@@ -4,7 +4,7 @@
 A minimalist stopwatch application built with HTML, CSS, and vanilla JavaScript. Features a light-themed UI with flip-style numeric box animations and keyboard shortcuts (Space to start/stop, Enter to reset).
 
 ## 2. Working Demo
-- **Live Demo URL:**
+- **Live Demo URL:** https://yeshan4477.github.io/Stopwatch/
 
 ## 3. Hackatime & Tracked Hours
 - **Total Hours Tracked:** 2 hours
