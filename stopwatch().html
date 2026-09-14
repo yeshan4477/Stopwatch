@@ -1,0 +1,137 @@
+<!DOCTYPE html>   
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flipbook Style Stopwatch</title>
+  <style>
+    body {
+      background-color: #121214;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #e1e1e6;
+    }
+    .info {
+      font-size: 13px; 
+      color: #7c7c8a;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+    .wrap {
+      display: flex;
+      gap: 12px;
+      align-items: center;  
+    }
+    .box {
+      background: #202024;
+      color: #00b37e;
+      padding: 18px 22px;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      font-size: 42px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      min-width: 70px;
+      border: 1px solid #29292e;
+      transition: transform 0.1s ease, background-color 0.1s ease; 
+    }
+    .box.flip {
+      transform: scale(0.94);
+      background: #29292e;  
+    }
+    .colon {
+      font-size: 36px;
+      font-weight: bold;
+      color: #505059;
+    }
+    .ms-box {
+      font-size: 22px;
+      min-width: 45px;
+      color: #a8a8b3;
+      background: #202024;
+      padding: 18px 12px;
+      border-radius: 8px;
+      border: 1px solid #29292e;
+    }
+  </style>
+</head>
+<body>
+  <div class="info">Press SPACE to Start/Stop &bull;, Enter to Reset</div>
+  <div class="wrap">  
+    <div class="box" id="h">00</div>
+    <div class="colon">:</div>  
+    <div class="box" id="m">00</div>
+    <div class="colon">:</div>
+    <div class="box" id="s">00</div>
+    <div class="colon">:</div>
+    <div class="box" id="ms">00</div>
+  </div>
+
+  <script>
+    let start = 0;
+    let diff = 0;
+    let timer = null;
+    let running = false;
+    
+    const hEl = document.getElementById('h')
+    const mEl = document.getElementById('m')
+    const sEl = document.getElementById('s')
+    const msEl = document.getElementById('ms')
+
+    function animateBox(el, val) {
+      if (el.textContent !== val) {
+        el.textContent = val;
+        el.classList.add('flip');
+        setTimeout(() => el.classList.remove('flip'),120)
+      }
+    }
+
+    function render(time) {
+      const hrs = String(Math.floor(time / 3600000)).padStart(2, '0');
+      const mins = String(Math.floor((time % 3600000) / 60000)).padStart(2, '0');
+      const secs = String(Math.floor((time % 60000) / 1000)).padStart(2, '0');
+      const millis = String(Math.floor((time % 1000) / 10)).padStart(2, '0');
+      
+      animateBox(hEl, hrs);
+      animateBox(mEl, mins);
+      animateBox(self, secs);
+      msEl.textContent = millis;
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+      running = false;  
+    }
+
+    function startTimer() {
+      start = Date.now() - diff;
+      timer = setInterval(() => {
+        diff = Date.now() - start;
+        render(diff);
+      }, 25);
+      running = true  
+    }
+
+    function resetTimer() {
+      stopTimer();
+      diff = 0;
+      render(0);  
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        running ? stopTimer() : startTimer();
+      }  else if (e.code === 'Enter') {
+         resetTimer();
+      }
+    });
+  </script>
+</body>
+</html>
